@@ -1,0 +1,43 @@
+{
+  "songs": [
+    {
+      "id": "midnight_orpheus",
+      "title": "Полночный Орфей",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "https://music.yandex.ru/album/43509598",
+        "vk_music": "https://vk.ru/audio-2001273804_153273804",
+        "youtube": "https://youtu.be/Wukw31iOrwI",
+        "vk_video": "https://vkvideo.ru/video-232206157_456239070"
+      }
+    },
+    {
+      "id": "esli_ne_my",
+      "title": "Если не мы",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "https://music.yandex.ru/album/43789411",
+        "vk_music": "https://vk.ru/audio-2001139945_154139945",
+        "youtube": "",
+        "vk_video": ""
+      }
+    },
+    {
+      "id": "next_song",
+      "title": "Следующая песня",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "",
+        "vk_music": "",
+        "youtube": "",
+        "vk_video": ""
+      }
+    }
+  ]
+}

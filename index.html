@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vyshnij music</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 20px;
+    }
+    /* Главный контейнер */
+    .song-card {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Шапка с артистом */
+    /* контейнер с лёгкой серой подложкой и тенью, как на скрине BandLink */
+    .artist-header {
+      margin-bottom: 36px;
+      /* Увеличили вертикальный отступ до 40px */
+      padding: 40px 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      background: #f9f9f9;
+    }
+    /* аватарка */
+    .artist-header img {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      /* Ключевое изменение: центрирует лицо, а не плечи */
+      object-position: center top;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    /* имя артиста крупным жирным шрифтом */
+    .artist-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+    /* Обложка трека — показывается только если поле cover заполнено в songs.json */
+    .song-card img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    /* Название трека. Берётся из song.title */
+    .song-card h1 {
+      font-size: 1.6rem;
+      margin-bottom: 30px;
+      margin-top: 0;
+      font-weight: 600;
+    }
+    /* Подзаголовки секций: «Слушать» и «Смотреть» */
+    .block-title {
+      font-size: 0.95rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
+
+    .block-title:first-of-type { margin-top: 0; }
+    /* Flex-контейнер: кнопки внутри идут столбцом с отступами */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+     /* Базовый класс для всех кнопок: width: 100%, отступы, скругление, тень, 
+     анимация при наведении */
+        .platform-link {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-align: center;
+      transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    /* .platform-link:hover { transform: translateY(-2px); opacity: 0.9; } */
+    /* Тень усиливается при наведении — эффект «приподнимающейся» кнопки. */
+        .platform-link:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .platform-link:active { transform: translateY(0); }
+
+    /* Музыкальные сервисы Жёлтый фон кнопки Яндекс Музыки */
+    .link-yandex-music { background: #FFCC00; color: #000000; }
+    /* Музыкальные сервисы Синий фон кнопки VK Музыки */
+    .link-vk-music { background: #0077FF; color: #ffffff; }
+
+    /* Видеосервисы Красный фон кнопки YouTube */
+    .link-youtube { background: #FF0000; color: #ffffff; }
+    /* Видеосервисы Голубой фон кнопки VK Видео */
+    .link-vk-video { background: #4A76A8; color: #ffffff; }
+
+    .loading { color: #888; font-size: 1.1rem; }
+    .error { color: #ff4444; font-size: 1.1rem; }
+  </style>
+  
+  <!-- Яндекс Метрика -->
+   <!-- 1. Читает параметр ?id= из адресной строки браузера -->
+   <!-- 2. Загружает songs.json через fetch() -->
+   <!-- 3. Находит трек по ID, формирует HTML и вставляет в #app -->
+   <!-- 4. При клике по кнопке вызывает ym(112580140, 'reachGoal', goal) 
+   — отправка цели в Метрику -->
+   <!-- 5. При загрузке вызывает ym(112580140, 'params', {song: ...}) — 
+   передаёт ID трека как параметр визита -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {
+        if (document.scripts[j].src === r) { return; }
+      }
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],
+      k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })
+    (window, document, "script",
+     "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(112580140, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script> 
+  <!-- /Яндекс Метрика -->
+</head>
+<body>
+  <noscript>
+    <div>
+      <img src="https://mc.yandex.ru/watch/112580140"
+           style="position:absolute; left:-9999px;" alt="" />
+    </div>
+  </noscript>
+  <div id="app" class="song-card">
+    <p class="loading">Загрузка…</p>
+  </div>
+
+  <script>
+    // Получаем id трека из URL (?id=название_трека)
+    const params = new URLSearchParams(window.location.search);
+    const songId = params.get('id');
+
+    if (!songId) {
+      document.getElementById('app').innerHTML =
+        '<p class="error">Трек не найден. Перейдите по ссылке из сообщества.</p>';
+    } else {
+
+      // Передаём id трека в Метрику как параметр визита
+          ym(112580140, 'params', { song: songId });
+
+      // Загружаем каталог песен
+      fetch('songs.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          const song = data.songs.find(function(s) { return s.id === songId; });
+
+          if (!song) {
+            document.getElementById('app').innerHTML =
+              '<p class="error">Трек не найден.</p>';
+            return;
+          }
+
+          // Фиксируем успешную загрузку страницы конкретного релиза
+          ym(112580140, 'reachGoal', 'song_page_loaded', {
+          song: songId
+          });
+
+          // Обновляем заголовок вкладки
+          document.title = song.title;
+
+          // Описания платформ: ключ, подпись, имя цели, CSS-класс
+          const musicPlatforms = [
+            { key: 'yandex_music', label: 'Яндекс Музыка', goal: 'yandex_music_click', cls: 'link-yandex-music' },
+            { key: 'vk_music',     label: 'VK Музыка',     goal: 'vk_music_click',     cls: 'link-vk-music' }
+          ];
+
+          const videoPlatforms = [
+            { key: 'youtube',  label: 'YouTube',  goal: 'youtube_click',  cls: 'link-youtube' },
+            { key: 'vk_video', label: 'VK Видео', goal: 'vk_video_click', cls: 'link-vk-video' }
+          ];
+
+          // Генератор кнопок
+          function makeButtons(platforms) {
+            return platforms
+              .filter(function(p) { return song.links[p.key]; })
+              .map(function(p) {
+                return '<a href="' + song.links[p.key] + '"'
+                     + ' class="platform-link ' + p.cls + '"'
+                     + ' data-goal="' + p.goal + '"'
+                     + ' data-song="' + songId + '"'
+                     + ' target="_blank" rel="noopener">'
+                     + p.label
+                     + '</a>';
+              }).join('');
+          }
+
+          const musicButtons = makeButtons(musicPlatforms);
+          const videoButtons = makeButtons(videoPlatforms);
+
+          // Рендерим страницу
+          const coverHtml = song.cover
+            ? '<img src="' + song.cover + '" alt="' + song.title + '" />'
+            : '';
+          /* безопасно формирует тег <img> только если в songs.json указан путь к фото. Если путь 
+          пустой — возвращает пустую строку, верстка не ломается */
+          const artistImgHtml = song.artist_image
+            ? `<img src="${song.artist_image}" alt="${song.artist_name || 'Артист'}" />`
+            : '';
+          /*  берёт имя из songs.json, а если не указано — подставляет «Вышний» по умолчанию */
+          const artistNameDisplay = song.artist_name || 'Вышний';
+
+          const musicBlock = musicButtons
+            ? '<div class="block-title">Слушать</div><div class="links">' + musicButtons + '</div>'
+            : '';
+
+          const videoBlock = videoButtons
+            ? '<div class="block-title">Смотреть</div><div class="links">' + videoButtons + '</div>'
+            : '';
+
+            /* Шапка с артистом вставляется до обложки и названия трека. Если фото нет — 
+            блок всё равно отрисуется с именем. Если имя не указано — подставится «Вышний».*/
+            document.getElementById('app').innerHTML =
+            '<div class="artist-header">' +
+              artistImgHtml +
+              '<div class="artist-name">' + artistNameDisplay + '</div>' +
+            '</div>' +
+            coverHtml +
+            '<h1>' + song.title + '</h1>' +
+            musicBlock +
+            videoBlock;
+
+
+          // Отслеживание кликов по кнопкам → цели в Метрике
+          document.querySelectorAll('.platform-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+              const goal = this.getAttribute('data-goal');
+              const song = this.getAttribute('data-song');
+              ym(112580140, 'reachGoal', goal, { song: song });
+            });
+          });
+        })
+        .catch(function() {
+          document.getElementById('app').innerHTML =
+            '<p class="error">Ошибка загрузки данных.</p>';
+        });
+    }
+  </script>
+</body>
+</html>
