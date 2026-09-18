@@ -27,6 +27,19 @@
       }
     },
     {
+      "id": "malysh",
+      "title": "Малыш",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "https://music.yandex.ru/album/43884843",
+        "vk_music": "https://vk.ru/audio-2001370505_154370505",
+        "youtube": "",
+        "vk_video": ""
+      }
+    },
+    {
       "id": "next_song",
       "title": "Следующая песня",
       "artist_name": "Вышний",
