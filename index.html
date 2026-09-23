@@ -325,13 +325,20 @@
             musicBlock +
             videoBlock;
 
-
           // Отслеживание кликов по кнопкам → цели в Метрике
           document.querySelectorAll('.platform-link').forEach(function (link) {
             link.addEventListener('click', function () {
               const goal = this.getAttribute('data-goal');
               const song = this.getAttribute('data-song');
+
+              // Индивидуальная цель конкретной платформы
               ym(112580140, 'reachGoal', goal, { song: song });
+
+              // Общая цель: переход на любую платформу
+              ym(112580140, 'reachGoal', 'platform_click', {
+                song: song,
+                platform: goal
+              });
             });
           });
         })
