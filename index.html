@@ -335,9 +335,16 @@
               ym(112580140, 'reachGoal', goal, { song: song });
 
               // Общая цель: переход на любую платформу
+              // Вместе с кликом сохраняем контекст конкретной ссылки
               ym(112580140, 'reachGoal', 'platform_click', {
                 song: song,
-                platform: goal
+                platform: goal,
+                dest: destination || 'all',
+                utm_source: params.get('utm_source') || 'none',
+                utm_medium: params.get('utm_medium') || 'none',
+                utm_campaign: params.get('utm_campaign') || 'none',
+                utm_content: params.get('utm_content') || 'none',
+                utm_term: params.get('utm_term') || 'none'
               });
             });
           });
