@@ -40,6 +40,19 @@
       }
     },
     {
+      "id": "mysli_kak_vihr",
+      "title": "Мысли как вихрь",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "https://music.yandex.ru/album/44039292",
+        "vk_music": "https://vk.ru/audio-2001815180_154815180",
+        "youtube": "",
+        "vk_video": ""
+      }
+    },
+    {
       "id": "next_song",
       "title": "Следующая песня",
       "artist_name": "Вышний",
