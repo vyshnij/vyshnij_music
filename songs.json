@@ -48,6 +48,19 @@
       "links": {
         "yandex_music": "https://music.yandex.ru/album/44039292",
         "vk_music": "https://vk.ru/audio-2001815180_154815180",
+        "youtube": "https://youtu.be/dn-_SRv_Yac",
+        "vk_video": "https://vkvideo.ru/video-232206157_456239087"
+      }
+    },
+    {
+      "id": "pereklyuchatel",
+      "title": "Переключатель",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "https://music.yandex.ru/album/44252013",
+        "vk_music": "https://vk.ru/audio-2001261227_155261227",
         "youtube": "",
         "vk_video": ""
       }
