@@ -66,6 +66,19 @@
       }
     },
     {
+      "id": "serdcePandory",
+      "title": "Сердце Пандоры",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "",
+        "vk_music": "https://vk.ru/audio-2001803177_155803177",
+        "youtube": "",
+        "vk_video": ""
+      }
+    },
+    {
       "id": "next_song",
       "title": "Следующая песня",
       "artist_name": "Вышний",
