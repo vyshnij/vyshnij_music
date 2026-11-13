@@ -61,8 +61,8 @@
       "links": {
         "yandex_music": "https://music.yandex.ru/album/44252013",
         "vk_music": "https://vk.ru/audio-2001261227_155261227",
-        "youtube": "",
-        "vk_video": ""
+        "youtube": "https://youtu.be/D5ptttCFKGY",
+        "vk_video": "https://vkvideo.ru/video-232206157_456239095"
       }
     },
     {
@@ -74,6 +74,19 @@
       "links": {
         "yandex_music": "https://music.yandex.ru/album/44507486",
         "vk_music": "https://vk.ru/audio-2001803177_155803177",
+        "youtube": "",
+        "vk_video": ""
+      }
+    },
+    {
+      "id": "I_pochemu",
+      "title": "И почему?",
+      "artist_name": "Вышний",
+      "artist_image": "artist.jpg",
+      "cover": "",
+      "links": {
+        "yandex_music": "https://music.yandex.ru/album/44793805",
+        "vk_music": "https://vk.ru/audio-2001465665_156465665",
         "youtube": "",
         "vk_video": ""
       }
